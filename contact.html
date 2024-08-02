@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+    <nav class="bg-black p-4 text-white">
+        <div class="container mx-auto flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold">ITGRC</a>
+            <ul class="flex space-x-4">
+                <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
+                <li><a href="services.html" class="hover:text-gray-300">Services</a></li>
+                <li><a href="industries.html" class="hover:text-gray-300">Industries</a></li>
+                <li><a href="resources.html" class="hover:text-gray-300">Resources</a></li>
+                <li><a href="company.html" class="hover:text-gray-300">Company</a></li>
+                <li><a href="contact.html" class="hover:text-gray-300">Get in touch</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mx-auto p-8">
+        <section class="bg-gray-900 text-white p-8 rounded-lg shadow-md text-center mb-8">
+            <h2 class="text-4xl font-bold mb-4">Contact Us</h2>
+            <p class="text-lg mb-6">We’re not a vendor – we’re your security partner.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Email</h3>
+                    <p class="mb-2"><a href="mailto:sales@versprite.com" class="text-blue-400">sales@versprite.com</a></p>
+                    <h3 class="text-2xl font-semibold mb-4">Phone number</h3>
+                    <p class="mb-2">(888) 242-0263</p>
+                    <h3 class="text-2xl font-semibold mb-4">Address</h3>
+                    <p class="mb-2">3495 Piedmont Road NE<br>Building 11 Suite 905<br>Atlanta, GA 30305</p>
+                </div>
+                <div class="bg-gray-800 p-6 rounded-lg">
+                    <h3 class="text-2xl font-semibold mb-4">Contact us to schedule a technical consultation. We’ll review your goals and help you identify the best solution.</h3>
+                    <form action="#" method="POST" class="space-y-4">
+                        <div class="flex flex-col md:flex-row md:space-x-4">
+                            <input type="text" name="first_name" placeholder="First Name" required class="w-full p-2 rounded border border-gray-600 focus:outline-none focus:border-blue-400">
+                            <input type="text" name="last_name" placeholder="Last Name" required class="w-full p-2 rounded border border-gray-600 focus:outline-none focus:border-blue-400">
+                        </div>
+                        <input type="text" name="job_title" placeholder="Job Title" required class="w-full p-2 rounded border border-gray-600 focus:outline-none focus:border-blue-400">
+                        <input type="text" name="company_name" placeholder="Company Name" required class="w-full p-2 rounded border border-gray-600 focus:outline-none focus:border-blue-400">
+                        <textarea name="message" placeholder="Your Message" rows="4" required class="w-full p-2 rounded border border-gray-600 focus:outline-none focus:border-blue-400"></textarea>
+                        <button type="submit" class="w-full p-2 bg-blue-500 text-white rounded hover:bg-blue-700">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="bg-gray-900 text-white text-center py-6">
+        <p>&copy; 2024 ITGRC Evolved Cybersecurity Consulting. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
