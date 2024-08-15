@@ -7,95 +7,127 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-        @keyframes slide {
-          from {
-            transform: translateX(0);
-          }
-          to {
-            transform: translateX(-100%);
-          }
-        }
-    
-        .logos {
-          overflow: hidden;
-          white-space: nowrap;
-          position: relative;
-        }
-    
-        .logos:before,
-        .logos:after {
-          position: absolute;
-          top: 0;
-          width: 250px;
-          height: 100%;
-          content: "";
-          z-index: 2;
-        }
-    
-        .logos:before {
-          left: 0;
-          background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
-        }
-    
-        .logos:after {
-          right: 0;
-          background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
-        }
-    
-        .logos:hover .logos-slide {
-          animation-play-state: paused;
-        }
-    
-        .logos-slide {
-          display: flex;
-          animation: 35s slide infinite linear;
-        }
-    
-        .logos-slide img {
-          height: 50px;
-          margin: 0 20px;
-        }
-      </style>
+    /* General hover effect for both links and Close button */
+    .hover-underline:hover .underline {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+    .underline {
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
+    }
+    </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
-    <nav class="bg-black p-4 text-white fixed top-0 w-full z-50">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold">ITGRC</a>
-            <ul class="flex space-x-4">
-                <li><a href="index.html" class="hover:text-gray-300">Home</a></li>
-                <li><a href="services.html" class="hover:text-gray-300">Services</a></li>
-                <li><a href="industries.html" class="hover:text-gray-300">Industries</a></li>s
-                <li><a href="#" class="hover:text-gray-300">Company</a></li>
-                <li><a href="contact.html" class="hover:text-gray-300">Get in touch</a></li>
+
+<!-- Original Navigation Bar -->
+<nav id="navbar" class="bg-white bg-opacity-0 pt-10 px-10 text-white fixed w-full z-50 transition-transform duration-500 ease-in-out">
+    <div class="container mx-auto flex justify-between items-center max-w-screen-xl">
+        <!-- Logo Image -->
+        <a href="#" id="logo">
+            <img src="static/images/1.jpg" alt="ITGRC Logo" class="w-[100px] h-[40px]">
+        </a>
+    
+        <!-- Menu Button -->
+        <button id="menuButton" class="relative text-white text-[1.4vw] font-semibold focus:outline-none hover-underline">
+            <span class="menu-text relative z-10">Menu</span>
+            <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>
+        </button>
+    </div>
+</nav>
+
+<!-- New Div that appears when Menu is clicked -->
+<div id="expandableMenu" class="fixed top-0 left-0 w-full bg-white h-0 overflow-hidden z-40 transition-all duration-700 ease-in-out">
+    <!-- Content of the expandable menu -->
+    <div class="container mx-auto max-w-screen-xl h-full grid grid-cols-10 gap-4 p-10">
+        <!-- Links (60%) -->
+        <div class="col-span-6 flex flex-col justify-center space-y-6">
+            <ul id="menuLinks" class="space-y-6 text-left text-black text-[2.5vw]">
+                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-100">
+                    <a href="index.html" class="relative hover:text-gray-300 inline-block hover-underline">
+                        Home
+                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+                    </a>
+                </li>
+                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-200">
+                    <a href="services.html" class="relative hover:text-gray-300 inline-block hover-underline">
+                        Services
+                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+                    </a>
+                </li>
+                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-300">
+                    <a href="industries.html" class="relative hover:text-gray-300 inline-block hover-underline">
+                        Industries
+                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+                    </a>
+                </li>
+                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-400">
+                    <a href="company.html" class="relative hover:text-gray-300 inline-block hover-underline">
+                        Company
+                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+                    </a>
+                </li>
+                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-500">
+                    <a href="contact.html" class="relative hover:text-gray-300 inline-block hover-underline">
+                        Get in touch
+                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+                    </a>
+                </li>
             </ul>
         </div>
-    </nav>
-    
-    
-    <!-- Hero Section -->
-    <section class="bg-white p-8 rounded-lg mb-12 flex flex-col md:flex-row items-center" style="height: 90vh;">
-        <div class="text-center text-black max-w-4xl mx-auto">
-            <h1 class="text-5xl font-bold mb-6 leading-tight">Leading a New Frontier of Innovative Managed Cybersecurity Services</h1>
-            <div class="flex flex-wrap justify-center space-x-4 items-center">
-                <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-[#00ADB5] mr-2"></i>Risk-Centric Threat Modeling Expertise</p>
-                <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-[#00ADB5] mr-2"></i>Renowned Approaches for Manual Exploit Testing</p>
-                <p class="text-lg flex items-center"><i class="fas fa-arrow-right text-[#00ADB5] mr-2"></i>Contextualizing Security across Managed Security Services</p>
+
+        <!-- Video Square (30%) -->
+        <div id="videoSquare" class="col-span-3 flex justify-center items-center">
+            <div class="w-[40vh] h-[40vh] bg-gray-800">
+                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
+                    <source src="static/videos/bg.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
             </div>
         </div>
-    </section>
-    
-    
 
-   <!-- New Section -->
-   <style>
-    .medium-image {
-        width: 100%;
-        max-width: 400px; /* Adjust the max-width to control the size */
-        height: auto;
-        object-fit: cover;
-        border-radius: 0.5rem; /* Rounded corners to match the section */
-    }
-</style>
+        <!-- Close Button (10%) -->
+        <div class="col-span-1 flex justify-end items-start">
+            <button id="closeButton" class="text-black text-[1.4vw] font-semibold focus:outline-none relative hover-underline">
+                <span class="menu-text relative z-10">Close</span>
+                <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Social Media Bar with Margin and Black Icons -->
+    <div class="bg-white flex justify-center items-center mt-0">
+        <div class=" border-t border-black"></div>
+        <div class="flex justify-center items-center text-black text-2xl space-x-6 py-4">
+            <a href="https://www.linkedin.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.twitter.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.facebook.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-facebook"></i></a>
+        </div>
+    </div>
+</div>
+
+  <!-- Hero Section -->
+<section id="heroSection" class="relative bg-white p-8 rounded-lg mb-12 flex flex-col md:flex-row items-center h-screen">
+    <!-- Video Background -->
+    <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+        <source src="static/videos/bg.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Overlay for better text visibility -->
+    <div class="absolute inset-0 bg-black opacity-50 z-10"></div>
+
+    <!-- Content -->
+    <div class="relative z-20 text-center text-white max-w-4xl mx-auto">
+        <h1 class="text-5xl font-bold mb-6 leading-tight">Shaping the Future of Managed Cybersecurity</h1>
+        <div class="flex flex-wrap justify-center space-x-4 items-center">
+            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Risk-Driven Threat Modeling & Strategic Defense</p>
+            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Expert-Led Manual Exploit Testing</p>
+            <p class="text-lg flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Integrated Security Solutions for Modern Enterprises</p>
+        </div>
+    </div>
+</section>
 
 <section class="bg-[#DCDDE1] p-8 rounded-lg mb-12 flex flex-col md:flex-row items-center">
     <div class="md:w-1/2 p-4">
@@ -291,6 +323,64 @@
     <footer class="bg-gray-900 text-white text-center py-6">
         <p>&copy; 2024 ITGRC Evolved Cybersecurity Consulting. All rights reserved.</p>
     </footer>
+    <script>
+const menuButton = document.getElementById('menuButton');
+const closeButton = document.getElementById('closeButton');
+const expandableMenu = document.getElementById('expandableMenu');
+const logo = document.getElementById('logo');
+const menuLinks = document.getElementById('menuLinks').children;
+const videoSquare = document.getElementById('videoSquare');
+const navbar = document.getElementById('navbar');
+const heroSection = document.getElementById('heroSection');
 
+menuButton.addEventListener('click', () => {
+    expandableMenu.style.transitionDuration = '700ms';  // Set duration for expanding
+    expandableMenu.style.height = '70vh';  // Expand the div to 70vh
+    expandableMenu.style.overflow = 'visible';  // Show the content
+    expandableMenu.classList.add('bg-opacity-100');  // Ensure full opacity
+    logo.style.display = 'none';  // Hide the original logo and menu button
+    menuButton.style.display = 'none';
+
+    // Delay displaying all content by 2 seconds (2000ms)
+    setTimeout(() => {
+        Array.from(menuLinks).forEach((link) => {
+            link.style.opacity = '1';
+        });
+        videoSquare.style.opacity = '1';
+        closeButton.style.opacity = '1';
+    }, 1000);  // 1 seconds delay
+});
+
+closeButton.addEventListener('click', () => {
+    expandableMenu.style.transitionDuration = '300ms';  // Set faster duration for collapsing
+    expandableMenu.style.height = '0';  // Collapse the div quickly
+    expandableMenu.style.overflow = 'hidden';  // Hide the content
+    expandableMenu.classList.remove('bg-opacity-100');  // Return opacity
+
+    // Hide links, video, and close button immediately
+    Array.from(menuLinks).forEach((link) => {
+        link.style.opacity = '0';
+    });
+    videoSquare.style.opacity = '0';
+    closeButton.style.opacity = '0';
+
+    // Delay the reappearance of the original logo and menu button until the div is fully closed
+    setTimeout(() => {
+        logo.style.display = 'block';  // Show the original logo and menu button again
+        menuButton.style.display = 'block';
+    }, 300);  // Matches the duration of the closing animation
+});
+
+// Handle scroll event to show/hide navbar based on hero section visibility
+window.addEventListener('scroll', () => {
+    const heroBottom = heroSection.getBoundingClientRect().bottom;
+
+    if (heroBottom <= 0) {
+        navbar.style.transform = 'translateY(-100%)';  // Hide navbar when scrolled out of hero section
+    } else {
+        navbar.style.transform = 'translateY(0)';  // Show navbar when in hero section
+    }
+});
+    </script>
 </body>
 </html>
