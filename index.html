@@ -7,111 +7,112 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
-    /* General hover effect for both links and Close button */
-    .hover-underline:hover .underline {
-        transform: scaleX(1);
-        transform-origin: left;
-    }
-    .underline {
-        transform: scaleX(0);
-        transform-origin: right;
-        transition: transform 0.5s cubic-bezier(0.25, 1, 0.5, 1);
-    }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f9f9f9; /* Light background for the page */
+        }
+        body, html {
+            overflow-x: hidden;
+        }
+
+        /* Underline animation on hover */
+        .nav-link:hover::after {
+            transform: scaleX(1);
+        }
+
+        .nav-link::after {
+            content: '';
+            display: block;
+            width: 100%;
+            height: 2px;
+            background-color: #1a73e8;
+            transition: transform 0.3s ease-in-out;
+            transform: scaleX(0);
+        }
+
+        /* Mobile menu transition */
+        #mobileMenu {
+            transform: translateY(-100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        #mobileMenu.active {
+            transform: translateY(0);
+        }
+
+        /* Logo Styling */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-text {
+            font-weight: 400; /* Lighter font weight for logo text */
+            font-size: 1.2rem;
+            color: #1a73e8; /* Blue color for logo text */
+        }
+
+        /* Light-themed text and hover colors */
+        .nav-link {
+            color: #333; /* Darker gray for text */
+            font-weight: 400; /* Regular weight for nav links */
+        }
+
+        .nav-link:hover {
+            color: #1a73e8; /* Blue color on hover */
+        }
+
+        .mobile-menu-link {
+            font-weight: 400; /* Regular weight for mobile links */
+        }
+
+        .mobile-menu-link:hover {
+            color: #1a73e8; /* Blue hover color for mobile links */
+        }
     </style>
 </head>
 <body class="bg-gray-100 text-gray-800">
 
-<!-- Original Navigation Bar -->
-<nav id="navbar" class="bg-white bg-opacity-0 pt-10 px-10 text-white fixed w-full z-50 transition-transform duration-500 ease-in-out">
-    <div class="container mx-auto flex justify-between items-center max-w-screen-xl">
-        <!-- Logo Image -->
-        <a href="#" id="logo">
-            <img src="static/images/1.jpg" alt="ITGRC Logo" class="w-[100px] h-[40px]">
-        </a>
-    
-        <!-- Menu Button -->
-        <button id="menuButton" class="relative text-white text-[1.4vw] font-semibold focus:outline-none hover-underline">
-            <span class="menu-text relative z-10">Menu</span>
-            <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-white"></span>
-        </button>
-    </div>
-</nav>
+    <nav class="bg-white fixed top-0 left-0 w-full z-50 shadow-md">
+        <div class="container mx-auto flex justify-between items-center p-3">
+            <!-- Logo and Text -->
+            <a href="#" class="logo-container">
+                <img src="static/images/logo.png" alt="ITGRC Logo" class="w-[80px] h-[40px]"> <!-- Slightly reduced logo size -->
+            </a>
 
-<!-- New Div that appears when Menu is clicked -->
-<div id="expandableMenu" class="fixed top-0 left-0 w-full bg-white h-0 overflow-hidden z-40 transition-all duration-700 ease-in-out">
-    <!-- Content of the expandable menu -->
-    <div class="container mx-auto max-w-screen-xl h-full grid grid-cols-10 gap-4 p-10">
-        <!-- Links (60%) -->
-        <div class="col-span-6 flex flex-col justify-center space-y-6">
-            <ul id="menuLinks" class="space-y-6 text-left text-black text-[2.5vw]">
-                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-100">
-                    <a href="index.html" class="relative hover:text-gray-300 inline-block hover-underline">
-                        Home
-                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
-                    </a>
-                </li>
-                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-200">
-                    <a href="services.html" class="relative hover:text-gray-300 inline-block hover-underline">
-                        Services
-                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
-                    </a>
-                </li>
-                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-300">
-                    <a href="industries.html" class="relative hover:text-gray-300 inline-block hover-underline">
-                        Industries
-                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
-                    </a>
-                </li>
-                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-400">
-                    <a href="company.html" class="relative hover:text-gray-300 inline-block hover-underline">
-                        Company
-                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
-                    </a>
-                </li>
-                <li class="opacity-0 transition-opacity duration-300 ease-in-out delay-500">
-                    <a href="contact.html" class="relative hover:text-gray-300 inline-block hover-underline">
-                        Get in touch
-                        <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-
-        <!-- Video Square (30%) -->
-        <div id="videoSquare" class="col-span-3 flex justify-center items-center">
-            <div class="w-[40vh] h-[40vh] bg-gray-800">
-                <video class="w-full h-full object-cover" autoplay loop muted playsinline>
-                    <source src="static/videos/bg.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+            <!-- Main Navigation Links -->
+            <div class="hidden md:flex space-x-5 text-lg font-semibold"> <!-- Reduced space and font size -->
+                <a href="index.html" class="nav-link">Home</a>
+                <a href="services.html" class="nav-link">Services</a>
+                <a href="industries.html" class="nav-link">Industries</a>
+                <a href="company.html" class="nav-link">Company</a>
+                <a href="contact.html" class="nav-link">Contact</a>
             </div>
-        </div>
 
-        <!-- Close Button (10%) -->
-        <div class="col-span-1 flex justify-end items-start">
-            <button id="closeButton" class="text-black text-[1.4vw] font-semibold focus:outline-none relative hover-underline">
-                <span class="menu-text relative z-10">Close</span>
-                <span class="underline absolute bottom-0 left-0 w-full h-0.5 bg-black"></span>
+            <!-- Mobile Menu Button -->
+            <button id="menuButton" class="block md:hidden text-gray-700 focus:outline-none">
+                <i class="fas fa-bars text-xl"></i>
             </button>
         </div>
-    </div>
 
-    <!-- Social Media Bar with Margin and Black Icons -->
-    <div class="bg-white flex justify-center items-center mt-0">
-        <div class=" border-t border-black"></div>
-        <div class="flex justify-center items-center text-black text-2xl space-x-6 py-4">
-            <a href="https://www.linkedin.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.twitter.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.facebook.com" target="_blank" class="hover:text-gray-500"><i class="fab fa-facebook"></i></a>
+        <!-- Mobile Menu -->
+        <div id="mobileMenu" class="bg-white w-full md:hidden">
+            <div class="flex flex-col items-center space-y-3 text-lg font-semibold p-3 text-gray-700"> <!-- Reduced spacing and font size -->
+                <a href="index.html" class="mobile-menu-link">Home</a>
+                <a href="services.html" class="mobile-menu-link">Services</a>
+                <a href="industries.html" class="mobile-menu-link">Industries</a>
+                <a href="company.html" class="mobile-menu-link">Company</a>
+                <a href="contact.html" class="mobile-menu-link">Contact</a>
+            </div>
         </div>
-    </div>
-</div>
-
+    </nav>
+  
   <!-- Hero Section -->
-<section id="heroSection" class="relative bg-white p-8 rounded-lg mb-12 flex flex-col md:flex-row items-center h-screen">
+  <section id="heroSection" class="relative bg-white pt-32 p-8 rounded-lg mb-12 flex flex-col md:flex-row items-center h-screen">
     <!-- Video Background -->
     <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-        <source src="static/videos/bg.mp4" type="video/mp4">
+        <source src="static/videos/2.mp4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
 
@@ -122,9 +123,9 @@
     <div class="relative z-20 text-center text-white max-w-4xl mx-auto">
         <h1 class="text-5xl font-bold mb-6 leading-tight">Shaping the Future of Managed Cybersecurity</h1>
         <div class="flex flex-wrap justify-center space-x-4 items-center">
-            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Risk-Driven Threat Modeling & Strategic Defense</p>
-            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Expert-Led Manual Exploit Testing</p>
-            <p class="text-lg flex items-center"><i class="fas fa-arrow-right text-black mr-2 text-2xl"></i>Integrated Security Solutions for Modern Enterprises</p>
+            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-white mr-2 text-2xl"></i>Risk-Driven Threat Modeling & Strategic Defense</p>
+            <p class="text-lg mb-4 flex items-center"><i class="fas fa-arrow-right text-white mr-2 text-2xl"></i>Expert-Led Manual Exploit Testing</p>
+            <p class="text-lg flex items-center"><i class="fas fa-arrow-right text-white mr-2 text-2xl"></i>Integrated Security Solutions for Modern Enterprises</p>
         </div>
     </div>
 </section>
@@ -141,8 +142,6 @@
         <img src="static/images/ns-removebg-preview.png" alt="Cybersecurity North Star" class="rounded-lg" style="width: 50vh;">
     </div>
 </section>
-
-
 
 <section class="bg-gray-200 p-8 rounded-lg mb-12">
     <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
@@ -320,67 +319,12 @@
     </div>
 </section>
 
+
+<!-- The rest of your content -->
+
     <footer class="bg-gray-900 text-white text-center py-6">
         <p>&copy; 2024 ITGRC Evolved Cybersecurity Consulting. All rights reserved.</p>
     </footer>
-    <script>
-const menuButton = document.getElementById('menuButton');
-const closeButton = document.getElementById('closeButton');
-const expandableMenu = document.getElementById('expandableMenu');
-const logo = document.getElementById('logo');
-const menuLinks = document.getElementById('menuLinks').children;
-const videoSquare = document.getElementById('videoSquare');
-const navbar = document.getElementById('navbar');
-const heroSection = document.getElementById('heroSection');
 
-menuButton.addEventListener('click', () => {
-    expandableMenu.style.transitionDuration = '700ms';  // Set duration for expanding
-    expandableMenu.style.height = '70vh';  // Expand the div to 70vh
-    expandableMenu.style.overflow = 'visible';  // Show the content
-    expandableMenu.classList.add('bg-opacity-100');  // Ensure full opacity
-    logo.style.display = 'none';  // Hide the original logo and menu button
-    menuButton.style.display = 'none';
-
-    // Delay displaying all content by 2 seconds (2000ms)
-    setTimeout(() => {
-        Array.from(menuLinks).forEach((link) => {
-            link.style.opacity = '1';
-        });
-        videoSquare.style.opacity = '1';
-        closeButton.style.opacity = '1';
-    }, 1000);  // 1 seconds delay
-});
-
-closeButton.addEventListener('click', () => {
-    expandableMenu.style.transitionDuration = '300ms';  // Set faster duration for collapsing
-    expandableMenu.style.height = '0';  // Collapse the div quickly
-    expandableMenu.style.overflow = 'hidden';  // Hide the content
-    expandableMenu.classList.remove('bg-opacity-100');  // Return opacity
-
-    // Hide links, video, and close button immediately
-    Array.from(menuLinks).forEach((link) => {
-        link.style.opacity = '0';
-    });
-    videoSquare.style.opacity = '0';
-    closeButton.style.opacity = '0';
-
-    // Delay the reappearance of the original logo and menu button until the div is fully closed
-    setTimeout(() => {
-        logo.style.display = 'block';  // Show the original logo and menu button again
-        menuButton.style.display = 'block';
-    }, 300);  // Matches the duration of the closing animation
-});
-
-// Handle scroll event to show/hide navbar based on hero section visibility
-window.addEventListener('scroll', () => {
-    const heroBottom = heroSection.getBoundingClientRect().bottom;
-
-    if (heroBottom <= 0) {
-        navbar.style.transform = 'translateY(-100%)';  // Hide navbar when scrolled out of hero section
-    } else {
-        navbar.style.transform = 'translateY(0)';  // Show navbar when in hero section
-    }
-});
-    </script>
 </body>
 </html>
